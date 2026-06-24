@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Baby Joshie! 🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue-dark:   #1a3a5c;
+      --blue-mid:    #2e6da4;
+      --blue-light:  #a8c8e8;
+      --blue-pale:   #daeaf7;
+      --cream:       #85A6FF;
+      --cream-dark:  #6b8fe0;
+      --dot-color:   #2e6da4;
+      --star-1: #1a3a5c;
+      --star-2: #2e6da4;
+      --star-3: #a8c8e8;
+      --star-4: #7070e8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--cream);
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── STAR / POLKA-DOT BACKGROUND ── */
+    .bg-pattern {
+      position: fixed; inset: 0; z-index: 0;
+      background-color: var(--cream);
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      font-size: 1.2rem;
+      opacity: 0.75;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.3); }
+    }
+
+    /* ── FRAMES ── */
+    .frame {
+      position: fixed; inset: 0; z-index: 10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 24px;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .frame.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(30px);
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: white;
+      border: 2.5px solid var(--blue-mid);
+      border-radius: 20px;
+      padding: 32px 28px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 6px 6px 0 var(--blue-light);
+      position: relative;
+    }
+
+    /* ── SNOOPY IMAGE PLACEHOLDER ── */
+    .snoopy-img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 16px;
+      /* 
+        ============================================================
+        📌 REPLACE THE src BELOW WITH YOUR SNOOPY IMAGE PATH
+        Example: src="images/snoopy-party.png"
+        Place your images inside a folder named "images/"
+        ============================================================
+      */
+    }
+
+    .snoopy-placeholder {
+      width: 140px; height: 140px;
+      background: var(--blue-pale);
+      border: 2px dashed var(--blue-mid);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 2.5rem;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1 {
+      font-family: 'Caveat', cursive;
+      font-size: 2.4rem;
+      color: var(--blue-dark);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem;
+      color: var(--blue-mid);
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* ── BUTTON ── */
+    .btn {
+      display: inline-block;
+      background: var(--blue-mid);
+      color: white;
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem;
+      padding: 10px 30px;
+      border-radius: 50px;
+      border: 2px solid var(--blue-dark);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 3px 3px 0 var(--blue-dark);
+      text-decoration: none;
+    }
+    .btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--blue-dark);
+    }
+    .btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 var(--blue-dark);
+    }
+    .btn-outline {
+      background: white;
+      color: var(--blue-dark);
+    }
+    .btn-row {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* ── FRAME 1 : LANDING ── */
+    #frame1 .card { border-color: var(--blue-mid); }
+
+    /* ── FRAME 2 : SURPRISE QUESTION ── */
+
+    /* ── FRAME 3 : MENU / CHOOSE ── */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .menu-item {
+      background: var(--blue-pale);
+      border: 2px solid var(--blue-mid);
+      border-radius: 14px;
+      padding: 16px 10px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 3px 3px 0 var(--blue-light);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+    }
+    .menu-item:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--blue-mid);
+    }
+    .menu-item .icon {
+      font-size: 2rem;
+    }
+    .menu-item span {
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--blue-dark);
+      font-weight: 600;
+    }
+
+    /* ── FRAME 4 : GIFT ── */
+    .gift-box {
+      width: 110px; height: 110px;
+      background: var(--blue-pale);
+      border: 3px solid var(--blue-mid);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      margin: 0 auto 16px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      box-shadow: 4px 4px 0 var(--blue-mid);
+      animation: float 2.5s ease-in-out infinite;
+    }
+    .gift-box:hover { transform: scale(1.08) rotate(-3deg); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    /* ── FRAME 5 : MESSAGE ── */
+    .message-card {
+      background: white;
+      border: 2.5px solid var(--blue-mid);
+      border-radius: 20px;
+      padding: 28px 24px;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 6px 6px 0 var(--blue-light);
+    }
+    .message-text {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: var(--blue-dark);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .confetti-burst {
+      font-size: 2rem;
+      letter-spacing: 6px;
+      margin-bottom: 12px;
+    }
+
+    /* ── BANNER / BUNTING ── */
+    .bunting {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 20;
+      display: flex; justify-content: center;
+      padding-top: 6px;
+      gap: 0;
+    }
+    .bunting-flag {
+      width: 28px; height: 22px;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      margin: 0 2px;
+    }
+
+    /* ── PROGRESS DOTS ── */
+    .dots {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 30;
+    }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      border: 1.5px solid var(--blue-mid);
+      transition: background 0.3s;
+    }
+    .dot.active { background: var(--blue-mid); }
+
+    /* ── BACK BUTTON ── */
+    .btn-back {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: white;
+      color: var(--blue-mid);
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      padding: 5px 14px;
+      border-radius: 50px;
+      border: 2px solid var(--blue-light);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+      box-shadow: 2px 2px 0 var(--blue-light);
+      display: flex; align-items: center; gap: 4px;
+    }
+    .btn-back:hover {
+      border-color: var(--blue-mid);
+      box-shadow: 3px 3px 0 var(--blue-mid);
+      transform: translate(-1px, -1px);
+    }
+
+    /* Frame 5 scrolls — back button stays pinned to screen */
+    #frame5 {
+      overflow-y: auto;
+      justify-content: flex-start;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    #frame5 .btn-back {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── STARRY BACKGROUND ── -->
+<div class="bg-pattern" id="bgPattern"></div>
+
+<!-- ── BUNTING ── -->
+<div class="bunting" id="bunting"></div>
+
+<!-- ════════════════════════════════
+     FRAME 1 — LANDING
+════════════════════════════════ -->
+<div class="frame" id="frame1">
+  <div class="card">
+
+    <!-- 
+      ============================================================
+      📌 FRAME 1 SNOOPY IMAGE
+      Replace the emoji placeholder below with an <img> tag.
+      Example:
+        <img src="images/snoopy-greeting.png" class="snoopy-img" alt="Snoopy" />
+      ============================================================
+    -->
+    <img src="s3.png" class="snoopy-img" alt="Snoopy" />
+
+    <h1>Happy Birthday,<br/>Baby Joshie! 🎂</h1>
+    <p class="subtitle">You have a little surprise waiting for you~</p>
+    <p>Click the button below to find out what's inside! ♡</p>
+    <button class="btn" onclick="goTo(2)">Open it! (◕‿◕)♡</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     FRAME 2 — SURPRISE QUESTION
+════════════════════════════════ -->
+<div class="frame hidden" id="frame2">
+  <div class="card">
+    <button class="btn-back" onclick="goTo(1)">← back</button>
+
+    <!--
+      ============================================================
+      📌 FRAME 2 SNOOPY IMAGE
+      Suggested: Snoopy peeking or holding a sign
+      Example:
+        <img src="images/snoopy-peek.png" class="snoopy-img" alt="Snoopy peeking" />
+      ============================================================
+    -->
+    <img src="s3.png" class="snoopy-img" alt="Snoopy" />
+
+    <h1>i have a surprise<br/>for you,</h1>
+    <p class="subtitle">wanna see it? ✨</p>
+    <div class="btn-row">
+      <button class="btn" onclick="goTo(3)">yes!! ♡</button>
+      <button class="btn btn-outline" onclick="goTo(3)">no thanks. (but yes)</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     FRAME 3 — MENU / CHOOSE
+════════════════════════════════ -->
+<div class="frame hidden" id="frame3">
+  <div class="card">
+    <button class="btn-back" onclick="goTo(2)">← back</button>
+    <h1>Click one<br/>to proceed!</h1>
+    <p class="subtitle" style="margin-bottom:18px;">What do you want to see first? ☁️</p>
+
+    <div class="menu-grid">
+      <div class="menu-item" onclick="goTo(4)">
+        <!--
+          📌 FRAME 3 — Icon images (optional, or keep emoji)
+          You can swap these emoji spans with small <img> tags
+        -->
+        <span class="icon">🖼️</span>
+        <span>Our Photos</span>
+      </div>
+      <div class="menu-item" onclick="goTo(5)">
+        <span class="icon">🎵</span>
+        <span>Our Song</span>
+      </div>
+      <div class="menu-item" onclick="goTo(6)">
+        <span class="icon">💐</span>
+        <span>For You</span>
+      </div>
+      <div class="menu-item" onclick="goTo(4)">
+        <span class="icon">🎂</span>
+        <span>Birthday Gift</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     FRAME 4 — GIFT / CAKE TAP
+════════════════════════════════ -->
+<div class="frame hidden" id="frame4">
+  <div class="card">
+    <button class="btn-back" onclick="goTo(3)">← back</button>
+
+    <!--
+      ============================================================
+      📌 FRAME 4 SNOOPY IMAGE
+      Suggested: Snoopy peeking over a box / card
+      Example:
+        <img src="images/snoopy-gift.png" class="snoopy-img" alt="Snoopy with gift" />
+      ============================================================
+    -->
+    <img src="s1.png" class="snoopy-img" alt="Snoopy" />
+
+    <h1>tap on the cake<br/>to open your gift</h1>
+    <p class="subtitle">something special is waiting~ 🎀</p>
+
+    <div class="gift-box" onclick="goTo(5)" title="Click me!">🎂</div>
+    <p style="font-size:0.8rem; color:#aaa;">click the cake ↑</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+     FRAME 5 — LOVE MESSAGE
+════════════════════════════════ -->
+<div class="frame hidden" id="frame5">
+  <div class="message-card" style="position:relative;">
+    <button class="btn-back" onclick="goTo(3)">← back</button>
+
+    <!--
+      ============================================================
+      📌 FRAME 5 SNOOPY IMAGE
+      Suggested: Snoopy dancing / happy celebration
+      Example:
+        <img src="images/snoopy-dance.png" class="snoopy-img" alt="Snoopy dancing" />
+      ============================================================
+    -->
+    <img src="s3.png" class="snoopy-img" alt="Snoopy" />
+
+    <div class="confetti-burst">🎉🎂🎈</div>
+    <h1 style="margin-bottom:16px;">Happy Birthday,<br/>my Joshie! ♡</h1>
+
+    <div class="message-text">
+      <!--
+        ============================================================
+        📌 EDIT YOUR PERSONAL MESSAGE BELOW
+        ============================================================
+      -->
+      Dear Baby,<br/><br/>
+      Happy happy birthday, my love! To the person who makes every good day better
+      and every hard day bearable, thank you for existing in this world baby! I know the
+      miles between us are real, but on your birthday, I want you to feel how close you
+      are to my heart. Thank you for the love and care you give me every single day.
+      I appreciate you soo so much mahal! 
+      
+      You deserve all the happiness baby! I'm always here for you no matter what
+      happen. Thank you for understanding me every single time baby. You deserve the
+      whole world baby, and honestly? I'm working on it. Until then, just know that
+      you're my favorite person, my best decision, and the reason I smile for no reason mweheh.
+      I promise to bring you to each and every country you wish to step foot on in the future.
+      We gonna get married soon okii? I LOVE YOU WITH ALL MY HEART, MY LOVELY! HAPPY HAPPY BIRTHDAY! <br/><br/>
+      — your baby 🐾
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" onclick="goTo(1)">Replay from start 🔁</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROGRESS DOTS ── -->
+<div class="dots" id="dots"></div>
+
+<script>
+  const TOTAL_FRAMES = 5;
+  let current = 1;
+
+  /* ── Generate starry background ── */
+  const stars = ['⭐','🌟','✨','💫','⭐','✨'];
+  const colors = ['#e8a020','#e85050','#50b878','#7070e8','#2e6da4'];
+  const bg = document.getElementById('bgPattern');
+  for (let i = 0; i < 38; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.textContent = stars[i % stars.length];
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.top  = Math.random() * 100 + 'vh';
+    s.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+    s.style.animationDelay = (Math.random() * 3) + 's';
+    bg.appendChild(s);
+  }
+
+  /* ── Bunting ── */
+  const buntingEl = document.getElementById('bunting');
+  const buntingColors = ['#2e6da4','#a8c8e8','#1a3a5c','#daeaf7','#7aadcc'];
+  for (let i = 0; i < 28; i++) {
+    const flag = document.createElement('div');
+    flag.className = 'bunting-flag';
+    flag.style.background = buntingColors[i % buntingColors.length];
+    buntingEl.appendChild(flag);
+  }
+
+  /* ── Progress dots ── */
+  const dotsEl = document.getElementById('dots');
+  for (let i = 1; i <= TOTAL_FRAMES; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.id = 'dot' + i;
+    dotsEl.appendChild(d);
+  }
+
+  /* ── Navigate between frames ── */
+  function goTo(n) {
+    document.getElementById('frame' + current).classList.add('hidden');
+    document.getElementById('dot' + current).classList.remove('active');
+    current = n;
+    document.getElementById('frame' + current).classList.remove('hidden');
+    document.getElementById('dot' + current).classList.add('active');
+  }
+</script>
+</body>
+</html>
