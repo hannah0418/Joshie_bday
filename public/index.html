@@ -73,30 +73,13 @@
       position: relative;
     }
 
-    /* ── SNOOPY IMAGE PLACEHOLDER ── */
+    /* ── SNOOPY IMAGE ── */
     .snoopy-img {
       width: 140px;
       height: 140px;
       object-fit: contain;
       display: block;
       margin: 0 auto 16px;
-      /* 
-        ============================================================
-        📌 REPLACE THE src BELOW WITH YOUR SNOOPY IMAGE PATH
-        Example: src="images/snoopy-party.png"
-        Place your images inside a folder named "images/"
-        ============================================================
-      */
-    }
-
-    .snoopy-placeholder {
-      width: 140px; height: 140px;
-      background: var(--blue-pale);
-      border: 2px dashed var(--blue-mid);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 16px;
-      font-size: 2.5rem;
     }
 
     /* ── TYPOGRAPHY ── */
@@ -151,15 +134,10 @@
       display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
     }
 
-    /* ── FRAME 1 : LANDING ── */
-    #frame1 .card { border-color: var(--blue-mid); }
-
-    /* ── FRAME 2 : SURPRISE QUESTION ── */
-
     /* ── FRAME 3 : MENU / CHOOSE ── */
     .menu-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 14px;
       margin-bottom: 20px;
     }
@@ -283,7 +261,7 @@
       transform: translate(-1px, -1px);
     }
 
-    /* Frame 5 scrolls — back button stays pinned to screen */
+    /* Frame 5 scrolls */
     #frame5 {
       overflow-y: auto;
       justify-content: flex-start;
@@ -311,17 +289,7 @@
 ════════════════════════════════ -->
 <div class="frame" id="frame1">
   <div class="card">
-
-    <!-- 
-      ============================================================
-      📌 FRAME 1 SNOOPY IMAGE
-      Replace the emoji placeholder below with an <img> tag.
-      Example:
-        <img src="images/snoopy-greeting.png" class="snoopy-img" alt="Snoopy" />
-      ============================================================
-    -->
     <img src="s3.png" class="snoopy-img" alt="Snoopy" />
-
     <h1>Happy Birthday,<br/>Baby Joshie! 🎂</h1>
     <p class="subtitle">You have a little surprise waiting for you~</p>
     <p>Click the button below to find out what's inside! ♡</p>
@@ -335,17 +303,7 @@
 <div class="frame hidden" id="frame2">
   <div class="card">
     <button class="btn-back" onclick="goTo(1)">← back</button>
-
-    <!--
-      ============================================================
-      📌 FRAME 2 SNOOPY IMAGE
-      Suggested: Snoopy peeking or holding a sign
-      Example:
-        <img src="images/snoopy-peek.png" class="snoopy-img" alt="Snoopy peeking" />
-      ============================================================
-    -->
     <img src="s3.png" class="snoopy-img" alt="Snoopy" />
-
     <h1>i have a surprise<br/>for you,</h1>
     <p class="subtitle">wanna see it? ✨</p>
     <div class="btn-row">
@@ -366,22 +324,6 @@
 
     <div class="menu-grid">
       <div class="menu-item" onclick="goTo(4)">
-        <!--
-          📌 FRAME 3 — Icon images (optional, or keep emoji)
-          You can swap these emoji spans with small <img> tags
-        -->
-        <span class="icon">🖼️</span>
-        <span>Our Photos</span>
-      </div>
-      <div class="menu-item" onclick="goTo(5)">
-        <span class="icon">🎵</span>
-        <span>Our Song</span>
-      </div>
-      <div class="menu-item" onclick="goTo(6)">
-        <span class="icon">💐</span>
-        <span>For You</span>
-      </div>
-      <div class="menu-item" onclick="goTo(4)">
         <span class="icon">🎂</span>
         <span>Birthday Gift</span>
       </div>
@@ -395,20 +337,9 @@
 <div class="frame hidden" id="frame4">
   <div class="card">
     <button class="btn-back" onclick="goTo(3)">← back</button>
-
-    <!--
-      ============================================================
-      📌 FRAME 4 SNOOPY IMAGE
-      Suggested: Snoopy peeking over a box / card
-      Example:
-        <img src="images/snoopy-gift.png" class="snoopy-img" alt="Snoopy with gift" />
-      ============================================================
-    -->
     <img src="s1.png" class="snoopy-img" alt="Snoopy" />
-
     <h1>tap on the cake<br/>to open your gift</h1>
     <p class="subtitle">something special is waiting~ 🎀</p>
-
     <div class="gift-box" onclick="goTo(5)" title="Click me!">🎂</div>
     <p style="font-size:0.8rem; color:#aaa;">click the cake ↑</p>
   </div>
@@ -420,26 +351,11 @@
 <div class="frame hidden" id="frame5">
   <div class="message-card" style="position:relative;">
     <button class="btn-back" onclick="goTo(3)">← back</button>
-
-    <!--
-      ============================================================
-      📌 FRAME 5 SNOOPY IMAGE
-      Suggested: Snoopy dancing / happy celebration
-      Example:
-        <img src="images/snoopy-dance.png" class="snoopy-img" alt="Snoopy dancing" />
-      ============================================================
-    -->
     <img src="s3.png" class="snoopy-img" alt="Snoopy" />
-
     <div class="confetti-burst">🎉🎂🎈</div>
     <h1 style="margin-bottom:16px;">Happy Birthday,<br/>my Joshie! ♡</h1>
 
     <div class="message-text">
-      <!--
-        ============================================================
-        📌 EDIT YOUR PERSONAL MESSAGE BELOW
-        ============================================================
-      -->
       Dear Baby,<br/><br/>
       Happy happy birthday, my love! To the person who makes every good day better
       and every hard day bearable, thank you for existing in this world baby! I know the
@@ -471,7 +387,6 @@
 
   /* ── Generate starry background ── */
   const stars = ['⭐','🌟','✨','💫','⭐','✨'];
-  const colors = ['#e8a020','#e85050','#50b878','#7070e8','#2e6da4'];
   const bg = document.getElementById('bgPattern');
   for (let i = 0; i < 38; i++) {
     const s = document.createElement('div');
